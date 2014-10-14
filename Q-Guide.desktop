@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment[en_US]=Aplicación para realizar consultas a la base de datos de ETECSA
+Comment=Aplicación para realizar consultas a la base de datos de ETECSA
+Exec=python q-guide.py
+GenericName[en_US]=Aplicación para realizar consultas a la base de datos de ETECSA
+GenericName=Aplicación para realizar consultas a la base de datos de ETECSA
+Icon=images/q-guide.png
+MimeType=
+Name[en_US]=Q-Guide
+Name=Q-Guide
+StartupNotify=true
+Terminal=false
+Type=Application
