@@ -181,6 +181,8 @@ class QGuide(QtGui.QMainWindow):
     def create_statusbar(self):
         self.statusbar = QtGui.QStatusBar(self)
         self.setStatusBar(self.statusbar)
+        self.statusbar.showMessage('Listo...')
+
 
     def create_actions(self):
         self.minimizeAction = QtGui.QAction(QtGui.QIcon(':/images/minimize.png'),
@@ -224,11 +226,11 @@ class QGuide(QtGui.QMainWindow):
                 'No se pueden realizar consultas sobre campos vacios')
         else:
             query = ("SELECT number, name, address FROM 'main'.'movil' WHERE number LIKE '%{nmbr}%' AND name LIKE '%{nam}%' AND address LIKE '%{addr}%';").format(nmbr=nmbr, nam=nam, addr=addr)
-            model_query = self.model.setQuery(query)
-            print model_query
-            self.model.setHeaderData(0, QtCore.Qt.Horizontal, "Nombre")
-            self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Numero")
+            self.model.setQuery(query)
+            self.model.setHeaderData(0, QtCore.Qt.Horizontal, "Numero")
+            self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Nombre")
             self.model.setHeaderData(2, QtCore.Qt.Horizontal, "Direccion")
+            self.statusbar.showMessage('Total de resultados: ' + str(self.model.rowCount()))
 
     def search_fix(self):
         nmbr = self.numberLine.text()
@@ -242,16 +244,17 @@ class QGuide(QtGui.QMainWindow):
         else:
             query = ("SELECT number, name, address FROM 'main'.'fix' WHERE number LIKE '%{nmbr}%' AND name LIKE '%{nam}%' AND address LIKE '%{addr}%';").format(nmbr=nmbr, nam=nam, addr=addr)
             self.model.setQuery(query)
-            self.model.setHeaderData(0, QtCore.Qt.Horizontal, "Nombre")
-            self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Numero")
+            self.model.setHeaderData(0, QtCore.Qt.Horizontal, "Numero")
+            self.model.setHeaderData(1, QtCore.Qt.Horizontal, "Nombre")
             self.model.setHeaderData(2, QtCore.Qt.Horizontal, "Direccion")
+            self.statusbar.showMessage('Total de resultados: ' + str(self.model.rowCount()))
 
     def about(self):
         QtGui.QMessageBox.about(
                 self,
                 'Q-Guide',
                 '<p>Q-Guide es un front-end para la base de datos de ETECSA</p>'
-                '<p>Copyright &copy; 2014 <a href=mailto:"ozkar.garcell@gmail.com">Ozkar L. Garcell</a></p>')
+                '<p>Copyright &copy; 2014 <a href=mailto:"ozkar.garcell@gmail.com">Ozkar L. Garcell</a> & <a href=mailto:"dhunterkde@gmail.com">Manuel E. Gutierrez</a></p>')
 
 
 if __name__ == '__main__':
