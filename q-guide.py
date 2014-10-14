@@ -53,13 +53,13 @@ class QGuide(QtGui.QMainWindow):
 
         self.resize(340, 450)
 
-        sizePolicy = QtGui.QSizePolicy(
+        size_policy = QtGui.QSizePolicy(
             QtGui.QSizePolicy.Preferred,
             QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
-        self.setSizePolicy(sizePolicy)
+        size_policy.setHorizontalStretch(0)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(size_policy)
         self.setMinimumSize(QtCore.QSize(340, 450))
         self.setMaximumSize(QtCore.QSize(340, 450))
 
@@ -71,20 +71,20 @@ class QGuide(QtGui.QMainWindow):
 
         self.fix_layouts()
 
-        self.verticalLayout_2.addWidget(self.tableWidget)
-        self.verticalLayout_3 = QtGui.QVBoxLayout()
-        self.verticalLayout_3.addLayout(self.verticalLayout)
-        self.verticalLayout_3.addLayout(self.verticalLayout_2)
-        self.verticalLayout_4 = QtGui.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_4.addLayout(self.verticalLayout_3)
+        self.vertical_layout_2.addWidget(self.tableWidget)
+        self.vertical_layout_3 = QtGui.QVBoxLayout()
+        self.vertical_layout_3.addLayout(self.verticalLayout)
+        self.vertical_layout_3.addLayout(self.vertical_layout_2)
+        self.vertical_layout_4 = QtGui.QVBoxLayout(self.centralwidget)
+        self.vertical_layout_4.addLayout(self.vertical_layout_3)
 
         self.setCentralWidget(self.centralwidget)
 
         self.create_statusbar()
 
-        self.createActions()
+        self.create_actions()
 
-        self.createTrayIcon()
+        self.create_tray_icon()
         self.trayIcon.setIcon(QtGui.QIcon(':/images/q-guide.png'))
         self.trayIcon.show()
         self.setWindowIcon(QtGui.QIcon(':/images/q-guide.png'))
@@ -175,14 +175,14 @@ class QGuide(QtGui.QMainWindow):
         self.buttonsHorizontalLayout.addWidget(self.pushButtonFix)
         self.buttonsHorizontalLayout.addWidget(self.pushButtonMovil)
 
-        self.verticalLayout_2 = QtGui.QVBoxLayout()
-        self.verticalLayout_2.addLayout(self.buttonsHorizontalLayout)
+        self.vertical_layout_2 = QtGui.QVBoxLayout()
+        self.vertical_layout_2.addLayout(self.buttonsHorizontalLayout)
 
     def create_statusbar(self):
         self.statusbar = QtGui.QStatusBar(self)
         self.setStatusBar(self.statusbar)
 
-    def createActions(self):
+    def create_actions(self):
         self.minimizeAction = QtGui.QAction(QtGui.QIcon(':/images/minimize.png'),
                 "Mi&nimizar",
                 self,
@@ -203,7 +203,7 @@ class QGuide(QtGui.QMainWindow):
                 self,
                 triggered=QtGui.qApp.quit)
 
-    def createTrayIcon(self):
+    def create_tray_icon(self):
          self.trayIconMenu = QtGui.QMenu(self)
          self.trayIconMenu.addAction(self.minimizeAction)
          self.trayIconMenu.addAction(self.restoreAction)
