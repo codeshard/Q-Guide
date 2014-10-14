@@ -85,11 +85,17 @@ class QGuide(QtGui.QMainWindow):
         self.createActions()
 
         self.createTrayIcon()
-
-        self.trayIcon.show()
         self.trayIcon.setIcon(QtGui.QIcon(':/images/q-guide.png'))
-
+        self.trayIcon.show()
         self.setWindowIcon(QtGui.QIcon(':/images/q-guide.png'))
+
+    def closeEvent(self, event):
+        QtGui.QMessageBox.information(self, "Q-Guide",
+                "El programa continuará ejecutándose en la bandeja del sistema."
+                "Para cerrar el programa, escoja <b>Cerrar</b> en el "
+                "menú contextual del icono de la bandeja.")
+        self.hide()
+        event.ignore()
 
     def create_input_form(self):
         self.numberLabel = QtGui.QLabel(self.centralwidget)
@@ -204,7 +210,6 @@ class QGuide(QtGui.QMainWindow):
          self.trayIconMenu.addAction(self.aboutAction)
          self.trayIconMenu.addSeparator()
          self.trayIconMenu.addAction(self.quitAction)
-
          self.trayIcon = QtGui.QSystemTrayIcon(self)
          self.trayIcon.setContextMenu(self.trayIconMenu)
 
